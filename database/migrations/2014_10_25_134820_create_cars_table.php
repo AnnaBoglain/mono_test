@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->string('model');
             $table->string('body_color');
             $table->string('state_number');
-            $table->string('status');
+            $table->boolean('status');
             $table->unsignedBigInteger('user_id')->nullable();
 
             $table->softDeletes();

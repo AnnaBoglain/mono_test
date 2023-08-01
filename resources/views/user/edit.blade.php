@@ -77,9 +77,8 @@
 
                 </div>
                 <div class="form-check">
-                    <input type="hidden" name="status" value="off">
                     <input class="form-check-input" type="checkbox" id="flexCheckDefault"
-                           name="status" {{$car_status = $car -> status === "on" ? "checked" : " "}} >
+                           name="status" {{$car_status = $car -> status == 1 ? "checked" : " "}} >
                     <label class="form-check-label" for="flexCheckDefault">
                         Находится на стоянке
                     </label>
@@ -133,11 +132,13 @@
             @enderror
         </div>
         <div class="form-check">
-            <input type="hidden" name="status" value="off">
             <input class="form-check-input" type="checkbox" id="flexCheckDefault" name="status" id="inputStateNumber">
             <label class="form-check-label" for="flexCheckDefault">
                 Находится на стоянке
             </label>
+            @error('status')
+            <p class="text-danger"> {{ $message }}</p>
+            @enderror
         </div>
         <div class="col-12">
             <button type="submit" class="btn btn-primary">Добавить</button>

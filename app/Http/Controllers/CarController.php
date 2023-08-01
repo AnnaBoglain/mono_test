@@ -16,11 +16,14 @@ class CarController extends Controller
             'model' => 'required|string',
             'body_color' => 'required|string',
             'state_number' => 'required|string|unique:cars',
-            'status' => 'required|string',
         ]);
-        if ($data_car['status'] != "on") {
-            $data_car['status'] = "off";
+
+        if($request->has('status')){
+            $data_car['status'] = true;
+        }else{
+            $data_car['status'] = false;
         }
+
         DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, ?)',
             [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $user->id]);
         return redirect()->route('user.index');
@@ -32,11 +35,12 @@ class CarController extends Controller
             'stamp' => 'required|string',
             'model' => 'required|string',
             'body_color' => 'required|string',
-            'status' => 'required|string',
         ]);
 
-        if ($data_car['status'] != "on") {
-            $data_car['status'] = "off";
+        if($request->has('status')){
+            $data_car['status'] = true;
+        }else{
+            $data_car['status'] = false;
         }
 
         DB::update('update cars

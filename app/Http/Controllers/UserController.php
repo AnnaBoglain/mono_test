@@ -13,15 +13,9 @@ class UserController extends Controller
     {
         $users = User::all();
         $cars = Car::paginate(3);
-        $count_on = DB::table('cars')->where('status', '=', "on")->count();
+        $count_on = DB::table('cars')->where('status', '=', 1)->count();
         $count = DB::table('cars')->count();
         return view('user.index', compact('users', 'cars', 'count_on', 'count'));
-    }
-
-    public function sum_car()
-    {
-        $cars = Car::all();
-
     }
 
     public function create()
@@ -29,7 +23,7 @@ class UserController extends Controller
         return view('user.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
@@ -43,12 +37,14 @@ class UserController extends Controller
             'model' => 'required|string',
             'body_color' => 'required|string',
             'state_number' => 'required|string|unique:cars',
-            'status' => 'required|string',
         ]);
 
-        if ($data_car['status'] != "on") {
-            $data_car['status'] = "off";
+        if($request->has('status')){
+            $data_car['status'] = true;
+        }else{
+            $data_car['status'] = false;
         }
+
         DB::insert('insert into users (full_name, gender, tel, address) values (?, ?, ?, ?)', [$data_user['full_name'], $data_user['gender'], $data_user['tel'], $data_user['address']]);
         DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, (SELECT id FROM users ORDER BY id DESC LIMIT 1))'
             , [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status']]);
@@ -56,24 +52,6 @@ class UserController extends Controller
 
         return redirect()->route('user.index');
     }
-
-    public function store_car(Request $request, User $user)
-    {
-        $data_car = request()->validate([
-            'stamp' => 'required|string',
-            'model' => 'required|string',
-            'body_color' => 'required|string',
-            'state_number' => 'required|string|unique:cars',
-            'status' => 'required|string',
-        ]);
-        if ($data_car['status'] != "on") {
-            $data_car['status'] = "off";
-        }
-        DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, ?)',
-            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $user->id]);
-        return redirect()->route('user.index');
-    }
-
 
     public function update_user(User $user, Car $cars, Request $request)
     {
@@ -104,7 +82,6 @@ class UserController extends Controller
     {
         return view('user.show', compact('user'));
     }
-
 
     public function delete(Car $car)
     {
