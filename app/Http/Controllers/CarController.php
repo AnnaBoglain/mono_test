@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 
 class CarController extends Controller
 {
-    public function store_car(Request $request, User $user)
+    public function store(Request $request, User $user)
     {
         $data_car = request()->validate([
             'stamp' => 'required|string',
@@ -30,7 +30,7 @@ class CarController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function update_car(Car $car, Request $request)
+    public function update(Car $car, Request $request)
     {
         $data_car = request()->validate([
             'stamp' => 'required|string',

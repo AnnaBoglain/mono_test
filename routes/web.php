@@ -27,7 +27,7 @@ Route::get('/users/filter', [ UserController::class, 'filter' ]) -> name('user.f
 Route::get('/users/{user}', [ UserController::class, 'show' ]) -> name('user.show');
 Route::get('/users/{user}/edit', [ UserController::class, 'edit' ]) -> name('user.edit');
 
-Route::post('/users/{user}/store', [ CarController::class, 'store_car' ])  ->name('user.store.car');
-Route::patch('/users/update_car/{car}', [ CarController::class, 'update_car' ]) -> name('user.update_car');
+Route::post('/users/{user}/store', [ CarController::class, 'store' ])  ->name('user.store.car');
+Route::patch('/users/update_car/{car}', [ CarController::class, 'update' ]) -> name('user.update_car');
 //Route::patch('/users/{user}', [ UserController::class, 'update' ]) -> name('user.update');
 
