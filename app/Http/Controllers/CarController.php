@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class CarController extends Controller
 {
@@ -35,6 +36,7 @@ class CarController extends Controller
             'stamp' => 'required|string',
             'model' => 'required|string',
             'body_color' => 'required|string',
+            'state_number' => ['required', 'string', Rule::unique('cars', 'state_number')->ignore($car->id)],
         ]);
 
         if($request->has('status')){
@@ -44,9 +46,9 @@ class CarController extends Controller
         }
 
         DB::update('update cars
-                set stamp = ?, model = ?, body_color = ?, status = ?
+                set stamp = ?, model = ?, body_color = ?, state_number = ?, status = ?
                 where id = ?',
-            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['status'], $car->id]);
+            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $car->id]);
         return redirect()->route('user.index');
     }
 }

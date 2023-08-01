@@ -72,7 +72,7 @@
                 </div>
                 <div class="form-outline mb-3">
                     <label for="inputStateNumber" class="form-label">Гос номера</label>
-                    <input type="text" class="form-control" id="inputStateNumber" placeholder="Гос номера" disabled
+                    <input type="text" class="form-control" id="inputStateNumber" placeholder="Гос номера"
                            readonly name="state_number" aria-describedby="basic-addon1" value="{{$car->state_number}} ">
 
                 </div>

@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -58,11 +59,10 @@ class UserController extends Controller
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string',
-            'tel' => 'required|string',
+            'tel' => ['required', 'string', Rule::unique('users', 'tel')->ignore($user->id)],
             'address' => 'required|string',
         ]);
 
-        //$car_id = 1;
         DB::update('update users
                 set full_name = ?, gender = ?, tel = ?, address = ?
                 where id = ?',
