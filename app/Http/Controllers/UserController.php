@@ -24,7 +24,6 @@ class UserController extends Controller
 
     }
 
-
     public function create()
     {
         return view('user.create');
@@ -94,25 +93,6 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function update_car(Car $car, Request $request)
-    {
-        $data_car = request()->validate([
-            'stamp' => 'required|string',
-            'model' => 'required|string',
-            'body_color' => 'required|string',
-            'status' => 'required|string',
-        ]);
-
-        if ($data_car['status'] != "on") {
-            $data_car['status'] = "off";
-        }
-
-        DB::update('update cars
-                set stamp = ?, model = ?, body_color = ?, status = ?
-                where id = ?',
-            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['status'], $car->id]);
-        return redirect()->route('user.index');
-    }
 
     public function edit(User $user, Car $car)
     {

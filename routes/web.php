@@ -15,21 +15,19 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CarController;
+
 Route::get('/users/create', [ UserController::class, 'create' ])->name('user.create');
 Route::post('/users', [ UserController::class, 'store' ])  ->name('user.store');
-
-Route::post('/users/{user}/store', [ UserController::class, 'store_car' ])  ->name('user.store.car');
-
 Route::patch('/users/update_user/{user}', [ UserController::class, 'update_user' ]) -> name('user.update_user');
-Route::patch('/users/update_car/{car}', [ UserController::class, 'update_car' ]) -> name('user.update_car');
-
 Route::get('/users/delete/{car}', [ UserController::class, 'delete' ]) -> name('user.delete');
 Route::get('/users/select', [ UserController::class, 'select' ]);
-
 Route::get('/users', [ UserController::class, 'index' ]) -> name('user.index');
 Route::get('/users/filter', [ UserController::class, 'filter' ]) -> name('user.filter');
 Route::get('/users/{user}', [ UserController::class, 'show' ]) -> name('user.show');
-
 Route::get('/users/{user}/edit', [ UserController::class, 'edit' ]) -> name('user.edit');
+
+Route::post('/users/{user}/store', [ CarController::class, 'store_car' ])  ->name('user.store.car');
+Route::patch('/users/update_car/{car}', [ CarController::class, 'update_car' ]) -> name('user.update_car');
 //Route::patch('/users/{user}', [ UserController::class, 'update' ]) -> name('user.update');
 
