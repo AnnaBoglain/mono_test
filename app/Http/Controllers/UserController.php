@@ -64,7 +64,6 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-
     public function edit(User $user, Car $car)
     {
         $cars = Car::all();
