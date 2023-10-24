@@ -13,13 +13,13 @@
             @enderror
         </div>
         <div class="form-check mb-3">
-            <input class="form-check-input " type="radio" name="gender" id="mаn">
+            <input class="form-check-input " type="radio" name="gender" id="mаn" {{$gender = $user->gender != 'woman' ? "checked" : " "}}>
             <label class="form-check-label" for="mаn">
                 Мужской
             </label>
         </div>
         <div class="form-check mb-3">
-            <input class="form-check-input" type="radio" name="gender" id="woman" checked>
+            <input class="form-check-input" type="radio" name="gender" id="woman" {{$gender = $user->gender == 'woman' ? "checked" : " "}}>
             <label class="form-check-label" for="woman">
                 Женский
             </label>

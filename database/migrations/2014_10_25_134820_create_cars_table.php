@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
-            $table->string('stamp');
-            $table->string('model');
-            $table->string('body_color');
-            $table->string('state_number');
+            $table->char('stamp', 255);
+            $table->char('model', 255);
+            $table->char('body_color', 50);
+            $table->char('state_number', 10);
             $table->boolean('status');
             $table->unsignedBigInteger('user_id')->nullable();
 

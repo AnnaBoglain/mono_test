@@ -16,8 +16,8 @@ class CarController extends Controller
         $data_car = request()->validate([
             'stamp' => 'required|string',
             'model' => 'required|string',
-            'body_color' => 'required|string',
-            'state_number' => 'required|string|unique:cars',
+            'body_color' => 'required|string|max:50',
+            'state_number' => 'required|string|unique:cars|max:30',
         ]);
 
         if($request->has('status')){
@@ -35,8 +35,8 @@ class CarController extends Controller
         $data_car = request()->validate([
             'stamp' => 'required|string',
             'model' => 'required|string',
-            'body_color' => 'required|string',
-            'state_number' => ['required', 'string', Rule::unique('cars', 'state_number')->ignore($car->id)],
+            'body_color' => 'required|string|max:50',
+            'state_number' => ['required', 'string', 'max:30',Rule::unique('cars', 'state_number')->ignore($car->id)],
         ]);
 
         if($request->has('status')){

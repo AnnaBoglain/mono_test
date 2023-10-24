@@ -8,23 +8,23 @@
                    aria-describedby="basic-addon1" value="{{old('full_name')}}">
 
             @error('full_name')
-            <p class="text-danger"> {{ $message }}</p>
+            <p class="text-danger"> {{ $message}}</p>
             @enderror
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="mаn" value="Мужской">
+            <input class="form-check-input" type="radio" name="gender" id="mаn" value="mаn" checked>
             <label class="form-check-label" for="mаn">
                 Мужской
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="woman" value="Женский" checked>
+            <input class="form-check-input" type="radio" name="gender" id="woman" value="woman">
             <label class="form-check-label" for="woman">
                 Женский
             </label>
         </div>
         <div class="form-outline mb-3">
-            <input placeholder="Телефон" type="text" name="tel" class="form-control"
+            <input placeholder="+7 999 123-45-67"  type="tel" name="tel" class="form-control"
                    data-mdb-input-mask="+7(999)999-99-99" value="{{old('tel')}}">
             @error('tel')
             <p class="text-danger"> {{ $message }}</p>

@@ -28,7 +28,7 @@ class UserController extends Controller
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string',
-            'tel' => 'required|string|unique:users',
+            'tel' => 'required|string|unique:users|min:11|numeric|max:30',
             'address' => 'required|string',
         ]);
 
@@ -38,10 +38,6 @@ class UserController extends Controller
             'body_color' => 'required|string',
             'state_number' => 'required|string|unique:cars',
         ]);
-
-        $messages = [
-            'tel.required' => 'We need to know your tel!',
-        ];
 
         if($request->has('status')){
             $data_car['status'] = true;
@@ -57,7 +53,7 @@ class UserController extends Controller
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string',
-            'tel' => ['required', 'string', Rule::unique('users', 'tel')->ignore($user->id)],
+            'tel' => ['required', 'string', 'min:11','numeric', 'max:30', Rule::unique('users', 'tel')->ignore($user->id)],
             'address' => 'required|string',
         ]);
         User::update_users($data_user, $user);
