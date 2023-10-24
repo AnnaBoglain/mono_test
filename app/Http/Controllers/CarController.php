@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Validator;
 
 class CarController extends Controller
 {
@@ -25,8 +26,7 @@ class CarController extends Controller
             $data_car['status'] = false;
         }
 
-        DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, ?)',
-            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $user->id]);
+        Car::store($data_car, $user);
         return redirect()->route('user.index');
     }
 
@@ -45,10 +45,7 @@ class CarController extends Controller
             $data_car['status'] = false;
         }
 
-        DB::update('update cars
-                set stamp = ?, model = ?, body_color = ?, state_number = ?, status = ?
-                where id = ?',
-            [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $car->id]);
+        Car::update_car($data_car, $car);
         return redirect()->route('user.index');
     }
 }

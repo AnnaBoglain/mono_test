@@ -26,7 +26,7 @@
         <div class="form-outline mb-3">
             <input placeholder="Телефон" type="text" name="tel" class="form-control"
                    data-mdb-input-mask="+7(999)999-99-99" value="{{old('tel')}}">
-            @error('phone')
+            @error('tel')
             <p class="text-danger"> {{ $message }}</p>
             @enderror
         </div>
