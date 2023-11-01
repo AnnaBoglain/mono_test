@@ -8,17 +8,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <title>Document</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        @yield('content')
-        @yield('create')
-        @yield('edit')
+    <div class="container">
+        <div class="row">
+            @yield('content')
+            @yield('create')
+            @yield('edit')
+        </div>
     </div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/imask"></script>
+    {{--<script src="resources/css/app.css"></script>--}}
+{{--    <script src="resources/js/app.js" type="text/javascript"></script>--}}
+{{--    <script src="/resources/js/app.js"></script>--}}
 </body>
 </html>

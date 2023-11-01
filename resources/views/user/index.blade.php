@@ -57,7 +57,15 @@
             {{$cars -> links()}}
         </div>
         <a href="{{route('user.create')}}" class="btn btn-success mt-5 mb-4">Создать</a>
-        <p>На стоянке находится {{$count_on}} автомобил(я/ей) из {{$count}}.</p>
+        <p>На стоянке находится {{$count_on}}
+            @php
+                if($count_on == 1){
+                    echo 'автомобиль';
+                }elseif($count_on > 1 && $count_on < 4){
+                    echo 'автомобиля';
+                }else{
+                    echo 'автомобилей';
+                }@endphp из {{$count}}.</p>
     </div>
 @endsection
 

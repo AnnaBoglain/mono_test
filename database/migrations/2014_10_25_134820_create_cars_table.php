@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->char('stamp', 255);
             $table->char('model', 255);
             $table->char('body_color', 50);
-            $table->char('state_number', 10);
+            $table->char('state_number', 30);
             $table->boolean('status');
             $table->unsignedBigInteger('user_id')->nullable();
 

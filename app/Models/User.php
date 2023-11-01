@@ -21,7 +21,7 @@ class User extends Model
 
     public static function store_users($data_user, $data_car){
         DB::insert('insert into users (full_name, gender, tel, address) values (?, ?, ?, ?)', [$data_user['full_name'], $data_user['gender'], $data_user['tel'], $data_user['address']]);
-        DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, (SELECT id FROM users ORDER BY id DESC LIMIT 1))'
+        DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, (SELECT MAX(`id`) FROM users LIMIT 1))'
             , [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status']]);
     }
 

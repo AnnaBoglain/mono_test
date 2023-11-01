@@ -12,20 +12,19 @@
             @enderror
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="mаn" value="mаn" checked>
+            <input class="form-check-input" type="radio" name="gender" id="man" value="m" checked>
             <label class="form-check-label" for="mаn">
                 Мужской
             </label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="gender" id="woman" value="woman">
+            <input class="form-check-input" type="radio" name="gender" id="woman" value="w">
             <label class="form-check-label" for="woman">
                 Женский
             </label>
         </div>
         <div class="form-outline mb-3">
-            <input placeholder="+7 999 123-45-67"  type="tel" name="tel" class="form-control"
-                   data-mdb-input-mask="+7(999)999-99-99" value="{{old('tel')}}">
+            <input type="tel" name="tel" id="tel" class="form-control tel" value="{{old('tel')}}" placeholder="+7(___) ___-__-__">
             @error('tel')
             <p class="text-danger"> {{ $message }}</p>
             @enderror
@@ -82,4 +81,5 @@
             <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
     </form>
+    <script src="https://unpkg.com/imask"></script>
 @endsection

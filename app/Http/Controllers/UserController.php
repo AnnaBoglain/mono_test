@@ -28,7 +28,7 @@ class UserController extends Controller
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string',
-            'tel' => 'required|string|unique:users|min:11|numeric|max:30',
+            'tel' => 'required|string|unique:users',
             'address' => 'required|string',
         ]);
 
@@ -53,7 +53,7 @@ class UserController extends Controller
         $data_user = request()->validate([
             'full_name' => 'required|string|min:3',
             'gender' => 'required|string',
-            'tel' => ['required', 'string', 'min:11','numeric', 'max:30', Rule::unique('users', 'tel')->ignore($user->id)],
+            'tel' => ['required', 'string', 'min:11','numeric', Rule::unique('users', 'tel')->ignore($user->id)],
             'address' => 'required|string',
         ]);
         User::update_users($data_user, $user);
