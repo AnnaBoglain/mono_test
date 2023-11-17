@@ -32,6 +32,7 @@ class CarController extends Controller
 
     public function update(Car $car, Request $request)
     {
+
         $data_car = request()->validate([
             'stamp' => 'required|string',
             'model' => 'required|string',

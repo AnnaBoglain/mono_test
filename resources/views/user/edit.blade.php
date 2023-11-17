@@ -26,8 +26,8 @@
         </div>
         <div class="form-outline mb-3">
             <label for="inputPhone" class="form-label">Номер телефона</label>
-            <input value="{{$user->tel}}" placeholder="Телефон" type="text" name="tel" id="inputPhone"
-                   class="form-control" data-mdb-input-mask="+7(999)999-99-99">
+            <input value="{{$user->tel}}" type="tel" name="tel" id="tel" placeholder="+7(___) ___-__-__"
+                   class="form-control tel">
             @error('tel')
             <p class="text-danger"> {{ $message }}</p>
             @enderror

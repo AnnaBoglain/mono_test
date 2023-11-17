@@ -22,7 +22,7 @@ return new class extends Migration {
             $table->softDeletes();
             $table->index('user_id', 'car_user_idx');
 
-            $table->foreign('user_id', 'car_user_fk')->on('users')->references('id')->onDelete('cascade');
+            $table->foreign('user_id', 'car_user_fk')->on('drivers')->references('id')->onDelete('cascade');
         });
     }
 

@@ -13,12 +13,12 @@ class Car extends Model
     protected $table = 'cars';
     protected $guarded = [];
 
-    public function users()
+    public function drivers()
     {
-        return $this->hasMany(User::class, 'user_id', 'id');
+        return $this->hasMany(Driver::class, 'user_id', 'id');
     }
 
-    public static function store($data_car, User $user){
+    public static function store($data_car, Driver $user){
         DB::insert('insert into cars (stamp, model, body_color, state_number, status, user_id) values (?, ?, ?, ?, ?, ?)',
             [$data_car['stamp'], $data_car['model'], $data_car['body_color'], $data_car['state_number'], $data_car['status'], $user->id]);
     }

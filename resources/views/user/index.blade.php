@@ -1,5 +1,34 @@
 @extends('layout.main')
 @section('content')
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        @if(Auth::check())
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="nav-item">You: {{Auth::user()->email}}</div>
+                <div class="nav-item">
+                    <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                        {{ csrf_field() }}
+                        <button type="submit" class="btn btn-primary m-3">Logout</button>
+                    </form>
+                </div>
+            </div>
+        @else
+            <a class="btn btn-primary m-3" href="{{route('register')}}"> Pегистрация </a>
+            <a class="btn btn-primary m-3" href="{{route('login')}}"> Bойти </a>
+        @endif
+    </nav>
+
+    @if (Session::has('flash_message'))
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="alert alert-danger">
+                        {{Session::get('flash_message')}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <div>
         <table class="table table-striped table-hover">
             <thead>
@@ -11,15 +40,15 @@
                 <th scope="col"></th>
             </tr>
             </thead>
-            @foreach($users as $user)
+            @foreach($drivers as $driver)
                 @foreach($cars as $car)
                     <tr>
                         @php
-                            if($car-> user_id === $user -> id && $car -> user_id === $user -> id){
-                                $route_user_id_edit = route('user.edit', $user -> id);
+                            if($car-> user_id === $driver -> id && $car -> user_id === $driver -> id){
+                                $route_user_id_edit = route('user.edit', $driver -> id);
                                 $route_user_id_delete = route('user.delete', $car -> id);
                         @endphp
-                        <td> {{$user -> full_name}}  </td>
+                        <td> {{$driver -> full_name}}  </td>
                         <td>{{$car -> stamp }} </td>
                         <td> {{$car -> state_number}} </td>
 
@@ -66,6 +95,22 @@
                 }else{
                     echo 'автомобилей';
                 }@endphp из {{$count}}.</p>
+    </div>
+
+
+    <div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Drivers</div>
+                    <div class="panel-body table-responsive">
+                        <router-view name="driverIndex" id="app">
+
+                        </router-view>
+                    </div>
+            </div>
+        </div>
+    </div>
     </div>
 @endsection
 

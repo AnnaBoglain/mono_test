@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DriverVueController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,20 +16,36 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-use App\Http\Controllers\UserController;
+//use App\Http\Controllers\UserController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\DriverController;
 
-Route::get('/users/create', [ UserController::class, 'create' ])->name('user.create');
-Route::post('/users', [ UserController::class, 'store' ])  ->name('user.store');
-Route::patch('/users/update_user/{user}', [ UserController::class, 'update_user' ]) -> name('user.update_user');
-Route::get('/users/delete/{car}', [ UserController::class, 'delete' ]) -> name('user.delete');
-Route::get('/users/select', [ UserController::class, 'select' ]);
-Route::get('/users', [ UserController::class, 'index' ]) -> name('user.index');
-Route::get('/users/filter', [ UserController::class, 'filter' ]) -> name('user.filter');
-Route::get('/users/{user}', [ UserController::class, 'show' ]) -> name('user.show');
-Route::get('/users/{user}/edit', [ UserController::class, 'edit' ]) -> name('user.edit');
+Route::get('/users/create', [ DriverController::class, 'create' ])->name('user.create');
+Route::post('/users', [ DriverController::class, 'store' ])  ->name('user.store');
+
+Route::post('/users/login', [ DriverController::class, 'login' ])  ->name('user.login');
+
+Route::patch('/users/update_driver/{user}', [ DriverController::class, 'update_driver' ]) -> name('user.update_user');
+Route::get('/users/delete/{car}', [ DriverController::class, 'delete' ]) -> name('user.delete');
+Route::get('/users/select', [ DriverController::class, 'select' ]);
+
+//Route::get('/users', [ DriverController::class, 'index_vue' ]) -> name('user.index');
+Route::get('/users', [ DriverController::class, 'index' ]) -> name('user.index');
+
+
+
+Route::get('/users/filter', [ DriverController::class, 'filter' ]) -> name('user.filter');
+Route::get('/users/{user}', [ DriverController::class, 'show' ]) -> name('user.show');
+Route::get('/users/{user}/edit', [ DriverController::class, 'edit' ]) -> name('user.edit');
 
 Route::post('/users/{user}/store', [ CarController::class, 'store' ])  ->name('user.store.car');
 Route::patch('/users/update_car/{car}', [ CarController::class, 'update' ]) -> name('user.update_car');
-//Route::patch('/users/{user}', [ UserController::class, 'update' ]) -> name('user.update');
+
+Auth::routes();
+
+//Route::get('{any}', function () {
+//    return view('index');
+//})->where('any', '.*');
+
+
 
