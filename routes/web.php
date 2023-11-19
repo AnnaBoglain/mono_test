@@ -29,7 +29,7 @@ Route::patch('/users/update_driver/{user}', [ DriverController::class, 'update_d
 Route::get('/users/delete/{car}', [ DriverController::class, 'delete' ]) -> name('user.delete');
 Route::get('/users/select', [ DriverController::class, 'select' ]);
 
-//Route::get('/users', [ DriverController::class, 'index_vue' ]) -> name('user.index');
+Route::get('/users/vue', [ DriverVueController::class, 'index' ]) -> name('user.index');
 Route::get('/users', [ DriverController::class, 'index' ]) -> name('user.index');
 
 

@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-//Route::middleware('api')->group(function () {
-//    Route::resource('drivers', DriverController::class);
-//});
+Route::group(['prefix' => 'drivers'], function(){
+    Route::post('/users', \App\Http\Controllers\StoreServer::class);
+});

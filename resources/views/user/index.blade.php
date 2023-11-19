@@ -98,19 +98,12 @@
     </div>
 
 
-    <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Drivers</div>
-                    <div class="panel-body table-responsive">
-                        <router-view name="driverIndex" id="app">
 
-                        </router-view>
-                    </div>
-            </div>
-        </div>
-    </div>
+
+    <div id="aptest">
+        <driver-index>
+
+        </driver-index>
     </div>
 @endsection
 

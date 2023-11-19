@@ -21,7 +21,7 @@ class DriverController extends Controller
         return view('user.index', compact('drivers', 'cars', 'count_on', 'count'));
     }
 
-    public function index_vue(Request $request)
+    public function __invoke(Request $request)
     {
         $drivers = Driver::all();
         return $drivers;

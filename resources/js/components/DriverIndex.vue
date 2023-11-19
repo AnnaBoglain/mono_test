@@ -1,9 +1,6 @@
-
 <template>
+    <CreateComponent></CreateComponent>
     <div>
-        <div class="form-group">
-            <router-link :to="{name: 'createDriver'}" class="btn btn-success">Create</router-link>
-        </div>
         <div class="panel panel-default">
             <div class="panel-body">
                 <table class="table table-bordered table-striped">
@@ -20,12 +17,12 @@
                         <td>{{ driver.stamp }}</td>
                         <td>{{ driver.state_number }}</td>
                         <td>
-<!--                            //<router-link :to="{name: 'editIndex', params: {id: driver.id}}" class="btn btn-xs btn-default">-->
-<!--                             //   Edit-->
-<!--                            //</router-link>-->
-<!--                            //<a href="#" class="btn btn-xs btn-danger" v-on:click="deleteDriver(driver.id, index)">-->
-<!--                             //   Delete-->
-<!--                            //</a>-->
+                            <router-link :to="{name: 'editIndex', params: {id: driver.id}}" class="btn btn-xs btn-default">
+                                Edit
+                            </router-link>
+                            <a href="#" class="btn btn-xs btn-danger" v-on:click="deleteDriver(driver.id, index)">
+                               Delete
+                            </a>
                         </td>
                     </tr>
                     </tbody>
@@ -36,9 +33,10 @@
 </template>
 
 <script>
-
+import CreateComponent from "./CreateComponent.vue";
 //Vue.component('drivers')
 export default {
+    name: "DriverIndex",
     data() {
         return {
             drivers:[]
@@ -49,7 +47,7 @@ export default {
     },
     methods: {
         getDrivers(){
-            axios.get('/users/vue'
+            axios.get('/users'
                 .then( res => {
                     this.drivers = res.data
                 }))
@@ -63,6 +61,9 @@ export default {
         createDrivers : function (){
 
         }
+    },
+    components:{
+        CreateComponent
     }
 }
 </script>

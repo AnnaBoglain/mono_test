@@ -11,7 +11,7 @@ class Driver extends Model
     use HasFactory;
 
     protected $table = 'drivers';
-    protected $guarded = [];
+    protected $guarded = false;
 
     public function cars()
     {
